@@ -92,6 +92,14 @@ namespace FuwaFuwaPresence
 		}
 
 		/// <summary>
+		/// アプリケーションのID
+		/// </summary>
+		public string アプリケーションID
+		{
+			get { return client.ApplicationID; }
+		}
+
+		/// <summary>
 		/// アクティビティの詳細
 		/// (1行目に表示されるテキスト)
 		/// </summary>

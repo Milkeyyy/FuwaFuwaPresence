@@ -1,4 +1,5 @@
 ﻿using DiscordRPC;
+using DiscordRPC.Message;
 using Produire;
 using System;
 
@@ -19,6 +20,7 @@ namespace FuwaFuwaPresence
 			client.OnReady += Client_OnReady;
 			client.OnClose += Client_OnClose;
 			client.OnPresenceUpdate += Client_OnPresenceUpdate;
+			client.OnConnectionFailed += Client_OnConnectionFailed;
 			// RPC情報
 			presence = new RichPresence();
 			// 日時情報
@@ -52,6 +54,55 @@ namespace FuwaFuwaPresence
 		private void Client_OnPresenceUpdate(object sender, object e)
 		{
 			ステータスが更新された?.Invoke(sender, EventArgs.Empty);
+		}
+		/// <summary>
+		/// Discord クライアントとの接続を確立できなかった時のイベント
+		/// </summary>
+		public event EventHandler 接続が失敗した;
+		private void Client_OnConnectionFailed(object sender, ConnectionFailedMessage args)
+		{
+			接続が失敗した?.Invoke(sender, new 接続が失敗した情報(args));
+		}
+
+		public class 接続が失敗した情報 : EventArgs, IProduireClass
+		{
+			private readonly ConnectionFailedMessage message;
+
+			public 接続が失敗した情報(ConnectionFailedMessage args)
+			{
+				message = args;
+			}
+
+			/// <summary>
+			/// パイプの接続に失敗したかどうか
+			/// </summary>
+			public int パイプ接続失敗
+			{
+				get { return message.FailedPipe; }
+			}
+			/// <summary>
+			/// メッセージの種類
+			/// </summary>
+			public MessageType メッセージタイプ
+			{
+				get { return message.Type; }
+			}
+		}
+
+		[列挙体(typeof(MessageType))]
+		public enum DiscordRPCメッセージタイプ
+		{
+			接続終了 = MessageType.Close,
+			接続確立 = MessageType.ConnectionEstablished,
+			接続失敗 = MessageType.ConnectionFailed,
+			エラー = MessageType.Error,
+			参加 = MessageType.Join,
+			参加要求 = MessageType.JoinRequest,
+			プレゼンス更新 = MessageType.PresenceUpdate,
+			準備完了 = MessageType.Ready,
+			観戦 = MessageType.Spectate,
+			登録 = MessageType.Subscribe,
+			登録解除 = MessageType.Unsubscribe
 		}
 
 		/// <summary>

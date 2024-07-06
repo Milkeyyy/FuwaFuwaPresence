@@ -62,7 +62,6 @@ namespace FuwaFuwaPresence
 		{
 			client.Initialize();
 		}
-
 		/// <summary>
 		/// Discord への接続を終了し、オブジェクトを破棄する
 		/// </summary>
@@ -72,7 +71,6 @@ namespace FuwaFuwaPresence
 			client.ClearPresence();
 			client.Dispose();
 		}
-
 		/// <summary>
 		/// リッチプレゼンスをクリアする
 		/// </summary>
@@ -81,7 +79,6 @@ namespace FuwaFuwaPresence
 		{
 			client.ClearPresence();
 		}
-
 		/// <summary>
 		/// リッチプレゼンスを更新する
 		/// </summary>
@@ -98,7 +95,6 @@ namespace FuwaFuwaPresence
 		{
 			get { return client.ApplicationID; }
 		}
-
 		/// <summary>
 		/// アクティビティの詳細
 		/// (1行目に表示されるテキスト)
@@ -170,7 +166,7 @@ namespace FuwaFuwaPresence
 		/// </summary>
 		public string 小画像キー
 		{
-			get { return presence.Assets.SmallImageText; }
+			get { return presence.Assets.SmallImageKey; }
 			set { presence.Assets.SmallImageKey = value; }
 		}
 		/// <summary>

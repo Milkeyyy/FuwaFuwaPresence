@@ -49,6 +49,9 @@
     <PackageReference Include="DiscordRichPresence">
       <Version>1.3.0.28</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
     <PackageReference Include="utopiat.Produire">
       <Version>2.0.1310</Version>
     </PackageReference>

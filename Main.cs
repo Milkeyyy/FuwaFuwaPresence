@@ -89,22 +89,6 @@ namespace FuwaFuwaPresence
 			}
 		}
 
-		[列挙体(typeof(MessageType))]
-		public enum DiscordRPCメッセージタイプ
-		{
-			接続終了 = MessageType.Close,
-			接続確立 = MessageType.ConnectionEstablished,
-			接続失敗 = MessageType.ConnectionFailed,
-			エラー = MessageType.Error,
-			参加 = MessageType.Join,
-			参加要求 = MessageType.JoinRequest,
-			プレゼンス更新 = MessageType.PresenceUpdate,
-			準備完了 = MessageType.Ready,
-			観戦 = MessageType.Spectate,
-			登録 = MessageType.Subscribe,
-			登録解除 = MessageType.Unsubscribe
-		}
-
 		/// <summary>
 		/// Discord IPC への接続を初期化しようとする
 		/// </summary>
@@ -163,6 +147,14 @@ namespace FuwaFuwaPresence
 		{
 			get { return presence.State; }
 			set { presence.State = value; }
+		}
+		/// <summary>
+		/// アクティビティの種類
+		/// </summary>
+		public ActivityType アクティビティタイプ
+		{
+			get { return presence.Type; }
+			set { presence.Type = value; }
 		}
 		/// <summary>
 		/// アクティビティの開始日時
@@ -228,5 +220,30 @@ namespace FuwaFuwaPresence
 			get { return presence.Assets.SmallImageText; }
 			set { presence.Assets.SmallImageText = value; }
 		}
+	}
+
+	[列挙体(typeof(MessageType))]
+	public enum DiscordRPCメッセージタイプ
+	{
+		接続終了 = MessageType.Close,
+		接続確立 = MessageType.ConnectionEstablished,
+		接続失敗 = MessageType.ConnectionFailed,
+		エラー = MessageType.Error,
+		参加 = MessageType.Join,
+		参加要求 = MessageType.JoinRequest,
+		プレゼンス更新 = MessageType.PresenceUpdate,
+		準備完了 = MessageType.Ready,
+		観戦 = MessageType.Spectate,
+		登録 = MessageType.Subscribe,
+		登録解除 = MessageType.Unsubscribe
+	}
+
+	[列挙体(typeof(ActivityType))]
+	public enum DiscordRPCアクティビティタイプ
+	{
+		プレイ中 = ActivityType.Playing,
+		再生中 = ActivityType.Listening,
+		視聴中 = ActivityType.Watching,
+		参戦中 = ActivityType.Competing
 	}
 }

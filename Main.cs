@@ -39,6 +39,7 @@ namespace FuwaFuwaPresence
 		{
 			準備が完了した?.Invoke(sender, EventArgs.Empty);
 		}
+
 		/// <summary>
 		/// Discord クライアントへの接続が失われた時のイベント
 		/// </summary>
@@ -47,6 +48,7 @@ namespace FuwaFuwaPresence
 		{
 			接続が閉じられた?.Invoke(sender, EventArgs.Empty);
 		}
+
 		/// <summary>
 		/// Discord クライアントがプレゼンスを更新した時のイベント
 		/// </summary>
@@ -55,6 +57,7 @@ namespace FuwaFuwaPresence
 		{
 			ステータスが更新された?.Invoke(sender, EventArgs.Empty);
 		}
+
 		/// <summary>
 		/// Discord クライアントとの接続を確立できなかった時のイベント
 		/// </summary>
@@ -80,6 +83,7 @@ namespace FuwaFuwaPresence
 			{
 				get { return message.FailedPipe; }
 			}
+
 			/// <summary>
 			/// メッセージの種類
 			/// </summary>
@@ -97,6 +101,7 @@ namespace FuwaFuwaPresence
 		{
 			client.Initialize();
 		}
+
 		/// <summary>
 		/// Discord への接続を終了し、オブジェクトを破棄する
 		/// </summary>
@@ -106,6 +111,7 @@ namespace FuwaFuwaPresence
 			client.ClearPresence();
 			client.Dispose();
 		}
+
 		/// <summary>
 		/// リッチプレゼンスをクリアする
 		/// </summary>
@@ -114,6 +120,7 @@ namespace FuwaFuwaPresence
 		{
 			client.ClearPresence();
 		}
+
 		/// <summary>
 		/// リッチプレゼンスを更新する
 		/// </summary>
@@ -139,6 +146,7 @@ namespace FuwaFuwaPresence
 			get { return presence.Details; }
 			set { presence.Details = value; }
 		}
+
 		/// <summary>
 		/// アクティビティの状態
 		/// (2行目に表示されるテキスト)
@@ -148,6 +156,7 @@ namespace FuwaFuwaPresence
 			get { return presence.State; }
 			set { presence.State = value; }
 		}
+
 		/// <summary>
 		/// アクティビティの種類
 		/// </summary>
@@ -156,6 +165,7 @@ namespace FuwaFuwaPresence
 			get { return presence.Type; }
 			set { presence.Type = value; }
 		}
+
 		/// <summary>
 		/// アクティビティの開始日時
 		/// </summary>
@@ -172,6 +182,7 @@ namespace FuwaFuwaPresence
 				else { presence.Timestamps.Start = ((DateTime)value).ToUniversalTime(); }
 			}
 		}
+
 		/// <summary>
 		/// アクティビティの終了日時
 		/// </summary>
@@ -188,6 +199,7 @@ namespace FuwaFuwaPresence
 				else { presence.Timestamps.End = ((DateTime)value).ToUniversalTime(); }
 			}
 		}
+
 		/// <summary>
 		/// アクティビティの画像のキー
 		/// </summary>
@@ -196,6 +208,7 @@ namespace FuwaFuwaPresence
 			get { return presence.Assets.LargeImageKey; }
 			set { presence.Assets.LargeImageKey = value; }
 		}
+
 		/// <summary>
 		/// 画像にカーソルを合わせた時に表示されるテキスト
 		/// </summary>
@@ -204,6 +217,7 @@ namespace FuwaFuwaPresence
 			get { return presence.Assets.LargeImageText; }
 			set { presence.Assets.LargeImageText = value; }
 		}
+
 		/// <summary>
 		/// アクティビティの画像の右下に表示される小さい画像のキー
 		/// </summary>
@@ -212,6 +226,7 @@ namespace FuwaFuwaPresence
 			get { return presence.Assets.SmallImageKey; }
 			set { presence.Assets.SmallImageKey = value; }
 		}
+
 		/// <summary>
 		/// 小さい画像にカーソルを合わせた時に表示されるテキスト
 		/// </summary>
@@ -220,6 +235,7 @@ namespace FuwaFuwaPresence
 			get { return presence.Assets.SmallImageText; }
 			set { presence.Assets.SmallImageText = value; }
 		}
+
 	}
 
 	[列挙体(typeof(MessageType))]
@@ -246,4 +262,5 @@ namespace FuwaFuwaPresence
 		視聴中 = ActivityType.Watching,
 		参戦中 = ActivityType.Competing
 	}
+
 }

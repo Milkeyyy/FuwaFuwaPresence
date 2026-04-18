@@ -140,6 +140,9 @@ namespace FuwaFuwaPresence
 		/// <summary>
 		/// アクティビティの詳細
 		/// (1行目に表示されるテキスト)
+		/// <summary>
+		/// アクティビティの詳細 (1行目に表示されるテキスト)
+		/// <para>最大128文字</para>
 		/// </summary>
 		public string 詳細
 		{
@@ -148,13 +151,33 @@ namespace FuwaFuwaPresence
 		}
 
 		/// <summary>
-		/// アクティビティの状態
-		/// (2行目に表示されるテキスト)
+		/// アクティビティの詳細のURL (1行目に表示されるテキストをクリックした時に開くURL)
+		/// <para>最大256文字</para>
+		/// </summary>
+		public string 詳細URL
+		{
+			get { return presence.DetailsUrl; }
+			set { presence.DetailsUrl = value; }
+		}
+
+		/// <summary>
+		/// アクティビティの状態 (2行目に表示されるテキスト)
+		/// <para>最大128文字</para>
 		/// </summary>
 		public string 状態
 		{
 			get { return presence.State; }
 			set { presence.State = value; }
+		}
+
+		/// <summary>
+		/// アクティビティの状態のURL (2行目に表示されるテキストをクリックした時に開くURL)
+		/// <para>最大256文字</para>
+		/// </summary>
+		public string 状態URL
+		{
+			get { return presence.StateUrl; }
+			set { presence.StateUrl = value; }
 		}
 
 		/// <summary>
@@ -164,6 +187,15 @@ namespace FuwaFuwaPresence
 		{
 			get { return presence.Type; }
 			set { presence.Type = value; }
+		}
+
+		/// <summary>
+		/// アクティビティの表示の種類
+		/// </summary>
+		public StatusDisplayType ステータス表示タイプ
+		{
+			get { return presence.StatusDisplay; }
+			set { presence.StatusDisplay = value; }
 		}
 
 		/// <summary>
@@ -201,7 +233,8 @@ namespace FuwaFuwaPresence
 		}
 
 		/// <summary>
-		/// アクティビティの画像のキー
+		/// アクティビティの画像 (大きい画像) のキーまたはURL
+		/// <para>最大256文字</para>
 		/// </summary>
 		public string 大画像キー
 		{
@@ -210,7 +243,8 @@ namespace FuwaFuwaPresence
 		}
 
 		/// <summary>
-		/// 画像にカーソルを合わせた時に表示されるテキスト
+		/// 大きい画像にカーソルを合わせた時に表示されるテキスト
+		/// <para>最大128文字</para>
 		/// </summary>
 		public string 大画像テキスト
 		{
@@ -219,7 +253,18 @@ namespace FuwaFuwaPresence
 		}
 
 		/// <summary>
-		/// アクティビティの画像の右下に表示される小さい画像のキー
+		/// 大きい画像が押された時に開くURL
+		/// <para>最大256文字</para>
+		/// </summary>
+		public string 大画像URL
+		{
+			get { return presence.Assets.LargeImageUrl; }
+			set { presence.Assets.LargeImageUrl = value; }
+		}
+
+		/// <summary>
+		/// アクティビティの画像の右下に表示される小さい画像のキーまたはURL
+		/// <para>最大256文字</para>
 		/// </summary>
 		public string 小画像キー
 		{
@@ -229,6 +274,7 @@ namespace FuwaFuwaPresence
 
 		/// <summary>
 		/// 小さい画像にカーソルを合わせた時に表示されるテキスト
+		/// <para>最大128文字</para>
 		/// </summary>
 		public string 小画像テキスト
 		{
@@ -236,6 +282,15 @@ namespace FuwaFuwaPresence
 			set { presence.Assets.SmallImageText = value; }
 		}
 
+		/// <summary>
+		/// 小さい画像が押された時に開くURL
+		/// <para>最大256文字</para>
+		/// </summary>
+		public string 小画像URL
+		{
+			get { return presence.Assets.SmallImageUrl; }
+			set { presence.Assets.SmallImageUrl = value; }
+		}
 	}
 
 	[列挙体(typeof(MessageType))]
@@ -263,4 +318,11 @@ namespace FuwaFuwaPresence
 		参戦中 = ActivityType.Competing
 	}
 
+	[列挙体(typeof(StatusDisplayType))]
+	public enum DiscordRPCステータス表示タイプ
+	{
+		名前 = StatusDisplayType.Name,
+		状態 = StatusDisplayType.State,
+		詳細 = StatusDisplayType.Details
+	}
 }

@@ -53,7 +53,7 @@
       <Version>13.0.4</Version>
     </PackageReference>
     <PackageReference Include="utopiat.Produire">
-      <Version>2.0.1310</Version>
+      <Version>2.0.1396</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -127,7 +127,19 @@ namespace FuwaFuwaPresence
 		[自分を]
 		public void 更新()
 		{
-			client.SetPresence(presence);
+			// ライブラリの Matches() が ステータス表示タイプ を比較しないため、
+			// ステータス表示タイプだけを変更した場合は送信がスキップされてしまうので、
+			// 更新する手順を呼んだ時は必ず送信するように一時的に同一スキップを無効化する
+			bool skip = client.SkipIdenticalPresence;
+			client.SkipIdenticalPresence = false;
+			try
+			{
+				client.SetPresence(presence);
+			}
+			finally
+			{
+				client.SkipIdenticalPresence = skip;
+			}
 		}
 
 		/// <summary>
